@@ -11,14 +11,13 @@
 (defpoll time :interval "20s"
 	`date +"%I:%M %p - %A %e"`)
 
-
 (deflisten workspaces :initial "[]" "bash ~/.config/eww/bar/scripts/get-workspaces")
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/bar/scripts/get-active-workspace")
 (defwidget workspaces []
   (box :class "workspaces" :space-evenly true
     (label :text "${workspaces}${current_workspace}" :visible false)
     (for workspace in workspaces
-      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}" :cursor "pointer"
         (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : workspace.windows > 0 ? "occupied" : "empty"}"
           (label :text "${workspace.id}")
           )
@@ -28,21 +27,56 @@
   )
 
 
-(defwidget centerPanel []
-  (button :class "calendar-button" :active "pointer"
-    time
+(deflisten media-title :initial ""
+  "playerctl --player=spotify --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(deflisten media-status :initial ""
+  "playerctl --player=spotify --follow status")
+(defvar media_reveal false)
+(defwidget player [] 
+  (eventbox :cursor "pointer"
+    (box :space-evenly false:space-evenly false
+      (revealer 
+        :reveal {!media_reveal} 
+        :transition "slideleft"
+        :duration "100ms"
+        (button :class "media-button ${media-status == "Playing" ? "active" : "passive"}" 
+          :onrightclick "eww update media_reveal=${!media_reveal}"
+          :onclick "playerctl --player=spotify play-pause"
+          ""
+        )
+      )
+      (revealer 
+        :reveal media_reveal 
+        :transition "slideright"
+        (button :class "media-text" :onrightclick "eww update media_reveal=${!media_reveal}"
+          (label :show-truncated "false" :text "${media-title}" )
+        )
+      )
+    )
   )
 )
 
+(defvar battery_reveal false)
 (defwidget battery []
-  (label :class "battery ${EWW_BATTERY["BAT0"].status == "Discharging" ? "BAT" : "AC"}" :text "${EWW_BATTERY["BAT0"].capacity}")
+  (eventbox :cursor "pointer" :onclick "eww update battery_reveal=${!battery_reveal}"
+    (box 
+      :class "battery ${EWW_BATTERY["BAT0"].status == "Discharging" ? "BAT" : "AC"}" 
+      :space-evenly false
+      (label :text "${EWW_BATTERY["BAT0"].status == "Discharging" ? "󰂄" : ""}" )
+      (revealer 
+        :reveal battery_reveal 
+        :transition "slideright"
+        :duration "200ms"
+        (label :text "${EWW_BATTERY["BAT0"].capacity}" :style "margin-left: 4px;")
+      )
+    )
+  )
 )
 
 (defwidget powerbutton []
   (eventbox :cursor "pointer"
-    (button :class "powermenu-button" :onclick "${EWW_CMD} open --toggle powermenu" 
-      (label :text "⏻")
-    )
+    (button :class "powermenu-button" :onclick "${EWW_CMD} open --toggle powermenu" "⏻")
   )
 )
 
@@ -50,22 +84,26 @@
 (defwidget leftStuff []
   (box :class "left-stuff" :orientation "h" :space-evenly false :halign "start"
     (workspaces :class "workspaces")
+    (player)
   )
 )
 
 (defwidget centerStuff []
   (box :class "center-stuff" :orientation "h" :space-evenly false :halign "center"
-    (centerPanel)
+    (label 
+          :text {time})
   )
 )
 
 (defwidget rightStuff []
   (box  :orientation "h" :space-evenly false :halign "end"
-    (systray 
-      :class "systray"
-      :spacing 8
-      :icon-size 16
-      :prepend-new true
+    (eventbox :cursor "pointer"
+      (systray 
+        :class "systray"
+        :spacing 8
+        :icon-size 16
+        :prepend-new true
+      )
     )
     (battery)
     (powerbutton)

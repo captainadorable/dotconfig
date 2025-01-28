@@ -8,8 +8,10 @@
   (powermenu-layout))
 
 (defwidget powermenu-layout []
-  (box :class "layout_box"
-    (buttons)
+  (eventbox :onclick "eww open --toggle powermenu"
+    (box :class "layout_box"
+      (buttons)
+    )
   )
 )
 

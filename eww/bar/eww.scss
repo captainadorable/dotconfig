@@ -3,8 +3,10 @@
 // Colors
 $background: #141318;
 
-$menu_background: #353535;
-$menu_hover: #6e00e3;
+$menu_background: #292929;
+$menu_hover: #FF82A9;
+$menu_border: #FFC0BE;
+$menu_item_border: #000;
 
 $workspace_bg_occupied: #578E7E; 
 $workspace_occupied: #578E7E; 
@@ -15,8 +17,8 @@ $workspace_empty: #3D3D3D;
 $workspace_bg_current: #BAD8B6;
 $workspace_current: #BAD8B6;
 
-$power_AC: #4c7aff;
-$power_BAT: #4cff6d;
+$power_AC: #ff1717;
+$power_BAT: #ffc100;
 
 * {
   all: unset; // Unsets everything so you can style everything from scratch
@@ -33,6 +35,7 @@ $power_BAT: #4cff6d;
   font-weight: bold;
 }
 
+// Calendar and time
 .calendar-button {
   padding: 4px 8px;
   border-radius: 10px;
@@ -41,15 +44,37 @@ $power_BAT: #4cff6d;
   background-color: transparentize($color: #FFF, $amount: 0.93);
 }
 
+// Spotify media
+.media-button {
+  margin-left: 8px;
+  padding: 0px 6px;
+  font-size: 20px;
+}
+.active {
+  color: #1DB954;
+}
+.passive {
+  color: gray;
+}
+.media-text {
+  margin-left: 8px;
+  font-weight: bold;
+  background-color: #1DB954;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
+
+// Systray
 .systray {
-  background-color: transparentize($color: #FFF, $amount: 0.9);
+  background-color: #1a1a1a ;
   padding: 0px 12px;
   border-radius: 10px;
 }
 
+// Battery
 .battery {
+  margin: 1px 2px 1px 16px;
   padding: 0px 8px;
-  margin: 4px 2px 4px 16px;
   font-weight: bold;
   border-radius: 40px;
   color: #fff;
@@ -61,6 +86,7 @@ $power_BAT: #4cff6d;
   background-color: $power_BAT;
 }
 
+// Powermenu button
 .powermenu-button {
   font-size: 16px;
   margin: 0px 4px 0px 12px;
@@ -104,14 +130,26 @@ systray {
 
 // Menu items
 menu {
-  padding: 5px;
+  padding: 4px;
   background-color: $menu_background;
   color: #fff;
+  border-radius: 12px;
+
+  border: 2px solid;
+  border-color: $menu_border;
 
   menuitem {
     border-radius: 5px;
-    padding: 8px 12px;
+    padding: 6px 10px;
+    margin: 6px;
     background-color: transparent;
+
+    border: 2px solid;
+    border-color: $menu_item_border;
+
+    box-shadow: 0px 2px 0px 1px black;
+
+
 
     &:backdrop {
       background-color: #FFFFFF;
@@ -131,5 +169,6 @@ menu {
 
   menuitem:hover {
     background-color: $menu_hover;
+    font-weight: bold;
   }
 }
