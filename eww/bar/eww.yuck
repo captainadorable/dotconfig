@@ -1,0 +1,86 @@
+(include "./powermenu/eww.yuck")
+
+(defwidget widgets []
+  (centerbox :orientation "h"
+    (leftStuff)
+    (centerStuff)
+    (rightStuff)
+  )
+)
+
+(defpoll time :interval "20s"
+	`date +"%I:%M %p - %A %e"`)
+
+
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/bar/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/bar/scripts/get-active-workspace")
+(defwidget workspaces []
+  (box :class "workspaces" :space-evenly true
+    (label :text "${workspaces}${current_workspace}" :visible false)
+    (for workspace in workspaces
+      (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+        (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : workspace.windows > 0 ? "occupied" : "empty"}"
+          (label :text "${workspace.id}")
+          )
+        )
+      )
+    )
+  )
+
+
+(defwidget centerPanel []
+  (button :class "calendar-button" :active "pointer"
+    time
+  )
+)
+
+(defwidget battery []
+  (label :class "battery ${EWW_BATTERY["BAT0"].status == "Discharging" ? "BAT" : "AC"}" :text "${EWW_BATTERY["BAT0"].capacity}")
+)
+
+(defwidget powerbutton []
+  (eventbox :cursor "pointer"
+    (button :class "powermenu-button" :onclick "${EWW_CMD} open --toggle powermenu" 
+      (label :text "⏻")
+    )
+  )
+)
+
+
+(defwidget leftStuff []
+  (box :class "left-stuff" :orientation "h" :space-evenly false :halign "start"
+    (workspaces :class "workspaces")
+  )
+)
+
+(defwidget centerStuff []
+  (box :class "center-stuff" :orientation "h" :space-evenly false :halign "center"
+    (centerPanel)
+  )
+)
+
+(defwidget rightStuff []
+  (box  :orientation "h" :space-evenly false :halign "end"
+    (systray 
+      :class "systray"
+      :spacing 8
+      :icon-size 16
+      :prepend-new true
+    )
+    (battery)
+    (powerbutton)
+  )
+)
+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0%"
+                               :width "100%"
+                               :height "40px"
+                               :anchor "top center")
+           :stacking "fg"
+           :exclusive true
+    (widgets)
+)
+

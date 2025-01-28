@@ -1,3 +1,6 @@
 #!/bin/bash
-eww open bar --screen 0 --id primary
-eww open bar --screen 1 --id secondary
+eww open-many bar activate-linux
+
+# MONITORS=$(hyprctl monitors -j | jq 'map({key: .id | tostring, value: .name}) | from_entries')
+# COUNT=$(jq --argjson monitors "${MONITORS}" "len($MONITORS)")
+

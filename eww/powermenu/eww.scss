@@ -1,0 +1,21 @@
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+.powermenu {
+  background-color: transparentize($color: #000000, $amount: 0.6);
+}
+
+.layout-box {
+  margin: 0px 0px 100px 0px;
+}
+
+.button {
+  border-radius: 20px;
+  padding: 30px 50px 30px 40px;
+  margin: 0px 10px;
+  background-color: black;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "JetBrainsMonoNL Nerd Font";
+}

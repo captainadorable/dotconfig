@@ -1,0 +1,32 @@
+(defwindow powermenu
+           :monitor 0
+           :geometry (geometry 
+                               :width "100%"
+                               :height "100%"
+                               :anchor "top center")
+           :stacking "fg"
+  (powermenu-layout))
+
+(defwidget powermenu-layout []
+  (box :class "layout_box"
+    (buttons)
+  )
+)
+
+(defwidget buttons []
+  (box :class "layout-box" :valign "center" :halign "center" :orientation "horizontal" :space-evenly true
+    (eventbox :cursor "pointer"
+      (button :class "button" :onclick "systemctl poweroff" "⏻")
+    )
+    (eventbox :cursor "pointer"
+      (button :class "button" :onclick "systemctl reboot" "󰜉")
+    )
+    (eventbox :cursor "pointer"
+      (button :class "button" :onclick "hyprctl dispatch exit 0" "󰍃")
+    )
+    (eventbox :cursor "pointer"
+      (button :class "button" :onclick "systemctl suspend" "󰤄")
+    )
+  )
+)
+

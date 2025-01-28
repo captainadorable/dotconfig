@@ -1,0 +1,135 @@
+// (label :text "${workspace.id}")
+
+// Colors
+$background: #141318;
+
+$menu_background: #353535;
+$menu_hover: #6e00e3;
+
+$workspace_bg_occupied: #578E7E; 
+$workspace_occupied: #578E7E; 
+
+$workspace_bg_empty: #3D3D3D; 
+$workspace_empty: #3D3D3D; 
+
+$workspace_bg_current: #BAD8B6;
+$workspace_current: #BAD8B6;
+
+$power_AC: #4c7aff;
+$power_BAT: #4cff6d;
+
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+// Global Styles
+.bar {
+  background-color: $background;
+  color: #FFFFFF;
+  padding: 10px 20px;
+}
+
+.center-stuff {
+  font-weight: bold;
+}
+
+.calendar-button {
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+.calendar-button:hover {
+  background-color: transparentize($color: #FFF, $amount: 0.93);
+}
+
+.systray {
+  background-color: transparentize($color: #FFF, $amount: 0.9);
+  padding: 0px 12px;
+  border-radius: 10px;
+}
+
+.battery {
+  padding: 0px 8px;
+  margin: 4px 2px 4px 16px;
+  font-weight: bold;
+  border-radius: 40px;
+  color: #fff;
+}
+.AC {
+  background-color: $power_AC;
+}
+.BAT {
+  background-color: $power_BAT;
+}
+
+.powermenu-button {
+  font-size: 16px;
+  margin: 0px 4px 0px 12px;
+  padding: 4px 10px 4px 6px;
+  color: red;
+}
+
+// Workspaces
+.workspaces {
+  padding: 4px 0px;
+}
+
+.workspace-entry {
+  color: #fff;
+  min-width: 20px;
+  margin: 0px 3px;
+  border-radius: 100%;
+  font-weight: bold;
+}
+
+.occupied {
+  color: $workspace_occupied;
+  background-color: $workspace_bg_occupied;
+}
+
+.empty {
+  color: $workspace_empty;
+  background-color: $workspace_bg_empty;
+}
+
+.current {
+  color: $workspace_current;
+  background-color: $workspace_bg_current;
+}
+
+// SysTray
+
+systray {
+  background-color: #fff;
+}
+
+// Menu items
+menu {
+  padding: 5px;
+  background-color: $menu_background;
+  color: #fff;
+
+  menuitem {
+    border-radius: 5px;
+    padding: 8px 12px;
+    background-color: transparent;
+
+    &:backdrop {
+      background-color: #FFFFFF;
+    }
+  }
+
+  menuitem arrow {
+    min-width: 16px;
+    min-height: 16px;
+
+    &:dir(ltr) {
+      -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
+      margin-left: 10px;
+      margin-right: 0;
+    }
+  }
+
+  menuitem:hover {
+    background-color: $menu_hover;
+  }
+}
