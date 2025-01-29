@@ -1,5 +1,12 @@
 #!/bin/bash
-eww open-many bar activate-linux
+
+# Start eww
+eww daemon && eww open-many bar activate-linux
+
+# Apply wallpaper
+swww-daemon && swww img "$(cat $BACKGROUND_FILE)"
+
+
 
 # MONITORS=$(hyprctl monitors -j | jq 'map({key: .id | tostring, value: .name}) | from_entries')
 # COUNT=$(jq --argjson monitors "${MONITORS}" "len($MONITORS)")

@@ -1,12 +1,5 @@
 (include "./powermenu/eww.yuck")
 
-(defwidget widgets []
-  (centerbox :orientation "h"
-    (leftStuff)
-    (centerStuff)
-    (rightStuff)
-  )
-)
 
 (defpoll time :interval "20s"
 	`date +"%I:%M %p - %A %e"`)
@@ -25,7 +18,6 @@
       )
     )
   )
-
 
 (deflisten media-title :initial ""
   "playerctl --player=spotify --follow metadata --format '{{ artist }} - {{ title }}' || true")
@@ -50,7 +42,7 @@
         :reveal media_reveal 
         :transition "slideright"
         (button :class "media-text" :onrightclick "eww update media_reveal=${!media_reveal}"
-          (label :show-truncated "false" :text "${media-title}" )
+          (label :show-truncated "false" :text "${media-title != "" ? media-title : "No Music"}" )
         )
       )
     )
@@ -61,7 +53,8 @@
 (defwidget battery []
   (eventbox :cursor "pointer" :onclick "eww update battery_reveal=${!battery_reveal}"
     (box 
-      :class "battery ${EWW_BATTERY["BAT0"].status == "Discharging" ? "BAT" : "AC"}" 
+      :class "battery ${EWW_BATTERY["BAT0"].status == "Discharging" ? 
+        EWW_BATTERY["BAT0"].capacity <= 30 ? "b30" : EWW_BATTERY["BAT0"].capacity <= 60 ? "b60" : "b100" : "AC"}" 
       :space-evenly false
       (label :text "${EWW_BATTERY["BAT0"].status == "Discharging" ? "󰂄" : ""}" )
       (revealer 
@@ -87,14 +80,12 @@
     (player)
   )
 )
-
 (defwidget centerStuff []
   (box :class "center-stuff" :orientation "h" :space-evenly false :halign "center"
     (label 
           :text {time})
   )
 )
-
 (defwidget rightStuff []
   (box  :orientation "h" :space-evenly false :halign "end"
     (eventbox :cursor "pointer"
@@ -110,6 +101,14 @@
   )
 )
 
+
+(defwidget widgets []
+  (centerbox :orientation "h"
+    (leftStuff)
+    (centerStuff)
+    (rightStuff)
+  )
+)
 (defwindow bar
            :monitor 0
            :geometry (geometry :x "0%"

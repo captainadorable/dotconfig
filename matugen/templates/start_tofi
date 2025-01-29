@@ -1,0 +1,6 @@
+/*
+* Css Colors
+* Generated with Matugen
+*/
+#!/bin/bash
+tofi-drun --border-color={{colors.on_primary.default.hex}} --selection-color={{colors.primary.default.hex}} --font=/usr/share/fonts/TTF/HackNerdFont-Regular.ttf

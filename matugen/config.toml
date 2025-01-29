@@ -1,0 +1,14 @@
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "center"]
+set = true
+
+
+[templates.eww]
+input_path = './templates/colors.scss'
+output_path = '~/.config/eww/colors.scss'
+
+[templates.tofi]
+input_path = './templates/start_tofi'
+output_path = '~/.config/tofi/start_tofi'
+post_hook = 'chmod +x ~/.config/tofi/start_tofi'

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Check if an image file argument is provided
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <image-path>"
+  exit 1
+fi
+
+IMAGE_PATH="$1"
+
+# Check if the provided file exists
+if [ ! -f "$IMAGE_PATH" ]; then
+  echo "Error: File '$IMAGE_PATH' does not exist."
+  exit 1
+fi
+
+# Set the background path in the .config directory
+CONFIG_DIR="$HOME/.config"
+BACKGROUND_FILE="$CONFIG_DIR/background.png"
+
+# Write the image path to the background file
+echo "$IMAGE_PATH" > "$BACKGROUND_FILE"
+
+# Set the background using swww
+matugen image "$(cat $BACKGROUND_FILE)" 
+echo "Background updated successfully to '$IMAGE_PATH'."

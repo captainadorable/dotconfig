@@ -1,24 +1,30 @@
 // (label :text "${workspace.id}")
+@import '../colors.scss';
 
 // Colors
-$background: #141318;
+$bar-background: $surface;
+$bar-foreground: $on_surface;
 
-$menu_background: #292929;
-$menu_hover: #FF82A9;
-$menu_border: #FFC0BE;
-$menu_item_border: #000;
+$menu_background: $surface;
+$menu_hover: $primary;
+$menu_border: $on_primary;
+$menu_item_border: $surface_variant;
 
-$workspace_bg_occupied: #578E7E; 
-$workspace_occupied: #578E7E; 
+$workspace_bg_occupied: $on_primary; 
+$workspace_occupied: $on_primary; 
 
 $workspace_bg_empty: #3D3D3D; 
 $workspace_empty: #3D3D3D; 
 
-$workspace_bg_current: #BAD8B6;
-$workspace_current: #BAD8B6;
+$workspace_bg_current: $primary;
+$workspace_current: $primary;
 
-$power_AC: #ff1717;
-$power_BAT: #ffc100;
+$power_color: $primary;
+$power_AC: $on_primary;
+// TODO
+$power_BAT_30: #e74c3c;
+$power_BAT_60: #f1c40f;
+$power_BAT_100: #2ecc71;
 
 * {
   all: unset; // Unsets everything so you can style everything from scratch
@@ -26,22 +32,13 @@ $power_BAT: #ffc100;
 
 // Global Styles
 .bar {
-  background-color: $background;
-  color: #FFFFFF;
+  background-color: $bar-background;
+  color: $bar-foreground;
   padding: 10px 20px;
 }
 
 .center-stuff {
   font-weight: bold;
-}
-
-// Calendar and time
-.calendar-button {
-  padding: 4px 8px;
-  border-radius: 10px;
-}
-.calendar-button:hover {
-  background-color: transparentize($color: #FFF, $amount: 0.93);
 }
 
 // Spotify media
@@ -76,14 +73,21 @@ $power_BAT: #ffc100;
   margin: 1px 2px 1px 16px;
   padding: 0px 8px;
   font-weight: bold;
-  border-radius: 40px;
-  color: #fff;
+
+  border-radius: 10px;
+  color: $power_color;
 }
 .AC {
   background-color: $power_AC;
 }
-.BAT {
-  background-color: $power_BAT;
+.b30 {
+  background-color: $power_BAT_30;
+}
+.b60 {
+  background-color: $power_BAT_60;
+}
+.b100 {
+  background-color: $power_BAT_100;
 }
 
 // Powermenu button
