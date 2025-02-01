@@ -1,3 +1,4 @@
 (include "./bar/eww.yuck")
 (include "./activate-linux/eww.yuck")
 (include "./powermenu/eww.yuck")
+(include "./osd/eww.yuck")

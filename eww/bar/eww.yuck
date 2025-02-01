@@ -1,5 +1,8 @@
 (include "./powermenu/eww.yuck")
 
+(defvar osd_last "")
+(defvar osd_open false)
+
 
 (defpoll time :interval "20s"
 	`date +"%I:%M %p - %A %e"`)

@@ -1,0 +1,28 @@
+(defvar osd_state "")
+(defvar osd_value "")
+
+(defwindow osd 
+           :monitor 0
+           :geometry (geometry 
+                               :y "0%"
+                               :width "30%"
+                               :anchor "top center")
+           :stacking "fg"
+  (osd-widget )
+)
+
+(defwidget osd-widget [] 
+  (metric :value osd_value :state osd_state)
+)
+
+(defwidget metric [value state]
+  (box :orientation "vertical"
+       :class "metric"
+       :space-evenly false
+    (scale :min 0
+           :max 100
+           :value {state == "volume" ? value*100 : 100/15360*value}
+           :hexpand true
+           )
+    (label :class "icon" :text {state == "volume" ? "󰕾" : "󰃟"})
+  ))

@@ -1,0 +1,71 @@
+# I wrote the Go script then asked nicely to DeepSeek to convert it to a bash script.
+# This is the result. 
+
+#!/bin/bash
+# Check if the correct number of arguments is provided
+if [ $# -ne 1 ]; then
+    echo "Not enough arguments"
+    exit 1
+fi
+
+# Function to get the value of an EWW variable
+get_eww_var() {
+    local var_name=$1
+    local output
+    output=$(eww get "$var_name")
+    echo "$output" | tr -d '[:space:]'
+}
+
+# Function to open the OSD
+open_osd() {
+    local state=$1
+    local value=$2
+    local now
+
+    # Set the last call time
+    now=$(date +%s)
+    eww update "osd_last=$now"
+
+    # Update OSD value and state
+    eww update "osd_value=$value"
+    eww update "osd_state=$state"
+
+    # Open the OSD if it's not already open
+    if [ "$(get_eww_var "osd_open")" = "false" ]; then
+        eww open osd
+        eww update "osd_open=true"
+    fi
+
+    # Wait for 2 seconds
+    sleep 2
+
+    # If another script called before the sleep, don't close the OSD
+    if [ "$(get_eww_var "osd_last")" != "$now" ]; then
+        echo "Called another script"
+        return
+    fi
+
+    # Close the OSD
+    eww close osd
+    eww update "osd_open=false"
+}
+
+# Main logic
+case $1 in
+    volume)
+        value=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2)
+        ;;
+    brightness)
+        value=$(brightnessctl g)
+        ;;
+    *)
+        echo "Invalid argument"
+        exit 1
+        ;;
+esac
+
+# Trim any leading/trailing whitespace from the value
+value=$(echo "$value" | xargs)
+
+# Open the OSD with the retrieved value
+open_osd "$1" "$value"

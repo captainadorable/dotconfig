@@ -1,0 +1,26 @@
+@import '../colors.scss';
+
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: $primary;
+  border-radius: 0 0px 5px 5px;
+}
+
+.metric scale trough {
+  all: unset;
+  background-color: $on_primary;
+  border-radius: 0 0px 5px 5px;
+  min-height: 10px;
+}
+
+.icon {
+  font-size: 20px;
+  font-weight: bold;
+  color: $primary;
+  margin-top: 5px;
+}
