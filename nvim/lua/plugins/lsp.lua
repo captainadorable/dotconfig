@@ -6,13 +6,6 @@ return {
     { "williamboman/mason.nvim",          cmd = "Mason" },
     { "williamboman/mason-lspconfig.nvim" },
     {
-      "windwp/nvim-autopairs",
-      event = "InsertEnter",
-      config = true
-      -- use opts = {} for passing setup options
-      -- this is equivalent to setup({}) function
-    },
-    {
       "L3MON4D3/LuaSnip",
       -- follow latest release.
       version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
@@ -21,7 +14,62 @@ return {
       build = "make install_jsregexp",
       dependencies = { "rafamadriz/friendly-snippets" }
     },
-    { "saadparwaiz1/cmp_luasnip" }
+    { "saadparwaiz1/cmp_luasnip" },
+    {
+      "zbirenbaum/copilot.lua",
+      config = function()
+        require("copilot").setup({
+          panel = {
+            enabled = true,
+            auto_refresh = false,
+            keymap = {
+              jump_prev = "[[",
+              jump_next = "]]",
+              accept = "<CR>",
+              refresh = "gr",
+              open = "<M-CR>"
+            },
+            layout = {
+              position = "right", -- | top | left | right | horizontal | vertical
+              ratio = 0.4
+            },
+          },
+          suggestion = {
+            enabled = true,
+            auto_trigger = false,
+            hide_during_completion = true,
+            debounce = 75,
+            keymap = {
+              accept = "<M-l>",
+              accept_word = false,
+              accept_line = false,
+              next = "<M-]>",
+              prev = "<M-[>",
+              dismiss = "<C-]>",
+            },
+          },
+          filetypes = {
+            yaml = false,
+            markdown = false,
+            help = false,
+            gitcommit = false,
+            gitrebase = false,
+            hgcommit = false,
+            svn = false,
+            cvs = false,
+            ["."] = false,
+          },
+          copilot_node_command = 'node', -- Node.js version must be > 18.x
+          server_opts_overrides = {},
+        })
+      end
+    },
+    -- {
+    --   "zbirenbaum/copilot-cmp",
+    --   config = function()
+    --     require("copilot_cmp").setup()
+    --   end
+    -- }
   },
   defaults = {
     lazy = false
@@ -61,7 +109,6 @@ return {
           vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
           vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
           vim.keymap.set("n", "<leader>e", ':lua vim.diagnostic.open_float(0, {scope="line"}) <ENTER>')
-
         end
       }
     )
@@ -93,6 +140,7 @@ return {
             local lspconfig = require("lspconfig")
             local util = require "lspconfig/util"
 
+
             lspconfig.gopls.setup {
               cmd = { "gopls" },
               filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -116,14 +164,15 @@ return {
       }
     )
 
+
     local cmp = require("cmp")
     require("luasnip.loaders.from_vscode").lazy_load()
-    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
 
     cmp.setup(
       {
         sources = {
+          { name = "copilot" },
           { name = "nvim_lsp" },
           { name = "luasnip" }
         },
@@ -169,5 +218,9 @@ return {
         })
       }
     )
+    require("copilot").setup({
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    })
   end
 }

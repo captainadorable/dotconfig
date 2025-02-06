@@ -9,7 +9,12 @@
   all: unset;
   background-color: $primary;
   border-radius: 0 0px 5px 5px;
+  box-shadow: 0px 1px 0px black;
 }
+.volume_over scale trough highlight {
+  background-color: red;
+}
+
 
 .metric scale trough {
   all: unset;
@@ -18,9 +23,13 @@
   min-height: 10px;
 }
 
+
+
 .icon {
   font-size: 20px;
   font-weight: bold;
   color: $primary;
   margin-top: 5px;
+
+  text-shadow: 0px 1px 0px black;
 }

@@ -17,7 +17,7 @@
 
 (defwidget metric [value state]
   (box :orientation "vertical"
-       :class "metric"
+       :class "metric ${state == "volume" && value*100 > 100 ? "volume_over" : ""}"
        :space-evenly false
     (scale :min 0
            :max 100

@@ -36,6 +36,6 @@ window_margin_width 5
 
 
 # BEGIN_KITTY_THEME
-# Base2Tone Pool Dark
+# Cyberdream
 include current-theme.conf
 # END_KITTY_THEME
