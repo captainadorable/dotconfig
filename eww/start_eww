@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Start eww
-eww daemon && eww open-many bar activate-linux
 
+eww daemon
 # Apply wallpaper
-swww-daemon && swww img "$(cat $BACKGROUND_FILE)"
+swww-daemon && swww img "$(cat $BACKGROUND_FILE)" & eww open-many bar activate-linux 
 
 
 

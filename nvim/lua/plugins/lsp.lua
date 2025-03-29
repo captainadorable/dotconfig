@@ -88,7 +88,20 @@ return {
           require("cmp_nvim_lsp").default_capabilities()
         )
 
-    require("lspconfig").gdscript.setup(lspconfig_defaults)
+    local lspconfig = require("lspconfig")
+    lspconfig.gdscript.setup(lspconfig_defaults)
+
+    local MY_FQBN = "arduino:avr:nano"
+    lspconfig.arduino_language_server.setup {
+      cmd = {
+        ".local/share/nvim/mason/bin/arduino-language-server",
+        "-clangd", "/home/captainadorable/.local/share/nvim/mason/bin/clangd",
+        "-cli", "/usr/bin/arduino-cli",
+        "-cli-config", "/home/captainadorable/.arduino15/arduino-cli.yaml",
+        "-fqbn", MY_FQBN
+      }
+    }
+
     -- This is where you enable features that only work
     -- if there is a language server active in the file
     vim.api.nvim_create_autocmd(
