@@ -76,6 +76,12 @@
   )
 )
 
+(defwidget bluetoothbutton []
+  (eventbox :cursor "pointer"
+    (button :class "bluetooth-button" :onclick "sh -c 'blueman-manager &'" "")
+  )
+)
+
 
 (defwidget leftStuff []
   (box :class "left-stuff" :orientation "h" :space-evenly false :halign "start"
@@ -91,6 +97,7 @@
 )
 (defwidget rightStuff []
   (box  :orientation "h" :space-evenly false :halign "end"
+    (bluetoothbutton)
     (eventbox :cursor "pointer"
       (systray 
         :class "systray"

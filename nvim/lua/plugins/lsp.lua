@@ -1,6 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    { "mfussenegger/nvim-dap" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/nvim-cmp" },
     { "williamboman/mason.nvim",          cmd = "Mason" },
@@ -64,6 +65,20 @@ return {
         })
       end
     },
+    {
+      "S1M0N38/love2d.nvim",
+      cmd = "LoveRun",
+      opts = {
+        path_to_love_bin = "/usr/bin/love",
+        path_to_love_library = "",
+        restart_on_save = false,
+      },
+      keys = {
+        { "<leader>v",  ft = "lua",          desc = "LÖVE" },
+        { "<leader>vv", "<cmd>LoveRun<cr>",  ft = "lua",   desc = "Run LÖVE" },
+        { "<leader>vs", "<cmd>LoveStop<cr>", ft = "lua",   desc = "Stop LÖVE" },
+      },
+    }
     -- {
     --   "zbirenbaum/copilot-cmp",
     --   config = function()
@@ -75,6 +90,24 @@ return {
     lazy = false
   },
   config = function()
+    local dap = require("dap")
+    dap.adapters.godot = {
+      type = "server",
+      host = "127.0.0.1",
+      port = 6006,
+    }
+    dap.configurations.gdscript = {
+      {
+        type = "godot",
+        request = "launch",
+        name = "Launch scene",
+        project = "${workspaceFolder}",
+        launch_scene = true,
+      }
+    }
+
+    --
+    --
     -- Reserve a space in the gutter
     vim.opt.signcolumn = "yes"
 
@@ -89,18 +122,20 @@ return {
         )
 
     local lspconfig = require("lspconfig")
-    lspconfig.gdscript.setup(lspconfig_defaults)
+    lspconfig.gdscript.setup({
+      name = "godot",
+      cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
+    })
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "gdscript",
+      callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.shiftwidth = 2
+        vim.bo.softtabstop = 2
+        vim.bo.expandtab = true
+      end
+    })
 
-    local MY_FQBN = "arduino:avr:nano"
-    lspconfig.arduino_language_server.setup {
-      cmd = {
-        ".local/share/nvim/mason/bin/arduino-language-server",
-        "-clangd", "/home/captainadorable/.local/share/nvim/mason/bin/clangd",
-        "-cli", "/usr/bin/arduino-cli",
-        "-cli-config", "/home/captainadorable/.arduino15/arduino-cli.yaml",
-        "-fqbn", MY_FQBN
-      }
-    }
 
     -- This is where you enable features that only work
     -- if there is a language server active in the file
@@ -126,6 +161,7 @@ return {
       }
     )
 
+    local third_party = "/home/captainadorable/.local/share/nvim/3rd"
     require("mason").setup({})
     require("mason-lspconfig").setup(
       {
@@ -137,20 +173,24 @@ return {
             require("lspconfig")[server_name].setup({})
           end,
           ["lua_ls"] = function()
-            local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup {
               settings = {
                 Lua = {
-                  runtime = { version = "Lua 5.1" },
                   diagnostics = {
                     globals = { "bit", "vim", "it", "describe", "before_each", "after_each" }
-                  }
+                  },
+                  telemetry = { enable = false },
+                  workspace = {
+                    checkThirdParty = false,
+                    library = {
+                      third_party .. "/love2d/library",
+                    }
+                  },
                 }
               }
             }
           end,
           gopls = function()
-            local lspconfig = require("lspconfig")
             local util = require "lspconfig/util"
 
 
@@ -237,3 +277,4 @@ return {
     })
   end
 }
+

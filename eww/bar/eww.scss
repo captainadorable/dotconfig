@@ -98,6 +98,16 @@ $power_BAT_100: #2ecc71;
   color: red;
 }
 
+// Bluetooth button
+.bluetooth-button {
+  font-size: 16px;
+  margin: 0px 4px 0px 12px;
+  padding: 4px 6px 4px 6px;
+  background-color: #202020;
+  border-radius: 10px;
+  color: $primary;
+}
+
 // Workspaces
 .workspaces {
   padding: 4px 0px;
