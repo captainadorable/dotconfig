@@ -1,0 +1,14 @@
+# Ignore everything
+*
+
+# Except these files/folders (use ! to unignore)
+!.gitignore
+!eww/
+!hypr/
+!kitty/
+!matugen/
+!nvim/
+!tofi/
+!starship.toml
+!.tmux.conf
+

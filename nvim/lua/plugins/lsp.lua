@@ -161,7 +161,7 @@ return {
       }
     )
 
-    local third_party = "/home/captainadorable/.local/share/nvim/3rd"
+    local third_party = "/home/adorable/.local/share/nvim/3rd"
     require("mason").setup({})
     require("mason-lspconfig").setup(
       {
