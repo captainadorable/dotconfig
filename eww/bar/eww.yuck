@@ -78,7 +78,7 @@
 
 (defwidget bluetoothbutton []
   (eventbox :cursor "pointer"
-    (button :class "bluetooth-button" :onclick "sh -c 'blueman-manager &'" "")
+    (button :class "bluetooth-button" :onclick "sh -c 'overskride &'" "")
   )
 )
 

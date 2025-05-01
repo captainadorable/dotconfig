@@ -274,7 +274,9 @@ return {
     require("copilot").setup({
       suggestion = { enabled = false },
       panel = { enabled = false },
+      server_opts_overrides = {
+        cmd = { "/home/adorable/.nvm/versions/node/v23.11.0/bin/node", "--stdio" }
+      }
     })
   end
 }
-
