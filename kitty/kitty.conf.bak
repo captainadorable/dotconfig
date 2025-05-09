@@ -11,6 +11,11 @@ cursor_shape_unfocused underline
 enable_audio_bell no
 window_margin_width 5
 
+background_opacity 0.95
+background_blur 128
+
+
+
 #### color
 # background #0e1419
 # foreground #e5e1cf
@@ -36,6 +41,6 @@ window_margin_width 5
 
 
 # BEGIN_KITTY_THEME
-# Cyberdream
+# pink lavender
 include current-theme.conf
 # END_KITTY_THEME

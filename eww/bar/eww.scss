@@ -33,6 +33,7 @@ $power_BAT_100: #2ecc71;
 // Global Styles
 .bar {
   background-color: $bar-background;
+  // background-color: transparent;
   color: $bar-foreground;
   padding: 10px 20px;
 }
@@ -62,11 +63,19 @@ $power_BAT_100: #2ecc71;
 }
 
 // Systray
-.systray {
-  background-color: #1a1a1a ;
-  padding: 0px 12px;
-  border-radius: 10px;
-}
+// .systray {
+//   background-color: #1a1a1a ;
+//   padding: 0px 12px;
+//   border-radius: 10px;
+// }
+// (eventbox :cursor "pointer"
+//   (systray 
+//     :class "systray"
+//     :spacing 8
+//     :icon-size 16
+//     :prepend-new true
+//   )
+// )
 
 // Battery
 .battery {
@@ -77,6 +86,7 @@ $power_BAT_100: #2ecc71;
   border-radius: 10px;
   color: $power_color;
 }
+
 .AC {
   background-color: $power_AC;
 }
@@ -94,19 +104,26 @@ $power_BAT_100: #2ecc71;
 .powermenu-button {
   font-size: 16px;
   margin: 0px 4px 0px 12px;
-  padding: 4px 10px 4px 6px;
-  color: red;
+  padding: 1px 10px 0px 6px;
+  border-radius: 10px;
+  color: $on_error;
+  background-color: $error;
+  transition: background-color 0.3s ease;
+}
+.powermenu-button:hover {
+  background-color: $error_container;
+  color: $on_error_container;
 }
 
 // Bluetooth button
-.bluetooth-button {
-  font-size: 16px;
-  margin: 0px 4px 0px 12px;
-  padding: 4px 6px 4px 6px;
-  background-color: #202020;
-  border-radius: 10px;
-  color: $primary;
-}
+// .bluetooth-button {
+//   font-size: 16px;
+//   margin: 0px 4px 0px 12px;
+//   padding: 4px 6px 4px 6px;
+//   background-color: #202020;
+//   border-radius: 10px;
+//   color: $primary;
+// }
 
 // Workspaces
 .workspaces {

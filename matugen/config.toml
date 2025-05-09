@@ -1,14 +1,18 @@
 [config.wallpaper]
 command = "swww"
-arguments = ["img", "--transition-type", "center"]
+arguments = ["img", "--transition-type", "wipe"]
 set = true
 
 
 [templates.eww]
-input_path = './templates/colors.scss'
+input_path = './templates/tofi_colors.scss'
 output_path = '~/.config/eww/colors.scss'
 
 [templates.tofi]
 input_path = './templates/start_tofi'
 output_path = '~/.config/tofi/start_tofi'
 post_hook = 'chmod +x ~/.config/tofi/start_tofi'
+
+[templates.rofi]
+input_path = './templates/rofi_colors.rasi'
+output_path = '~/.config/rofi/colors.rasi'

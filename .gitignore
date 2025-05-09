@@ -3,13 +3,14 @@
 
 # Except these files/folders (use ! to unignore)
 !.gitignore
-!eww/*
-!hypr/*
-!rofi/*
-!kitty/*
-!matugen/*
-!nvim/*
-!tofi/*
+!eww/**
+!hypr/**
+!rofi/**
+!kitty/**
+!matugen/**
+!nvim/**
+!tofi/**
+!scripts/**
 !starship.toml
 !.tmux.conf
 !.zshrc

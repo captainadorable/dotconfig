@@ -18,16 +18,16 @@
 (defwidget buttons []
   (box :class "layout-box" :valign "center" :halign "center" :orientation "horizontal" :space-evenly true
     (eventbox :cursor "pointer"
-      (button :class "button" :onclick "systemctl poweroff" "⏻")
+      (button :class "button" :onclick "${EWW_CMD} close powermenu && systemctl poweroff" "⏻")
     )
     (eventbox :cursor "pointer"
-      (button :class "button" :onclick "systemctl reboot" "󰜉")
+      (button :class "button" :onclick "${EWW_CMD} close powermenu && systemctl reboot" "󰜉")
     )
     (eventbox :cursor "pointer"
-      (button :class "button" :onclick "hyprctl dispatch exit 0" "󰍃")
+      (button :class "button" :onclick "${EWW_CMD} close powermenu && loginctl kill-user adorable" "󰍃")
     )
     (eventbox :cursor "pointer"
-      (button :class "button" :onclick "systemctl suspend" "󰤄")
+      (button :class "button" :onclick "${EWW_CMD} close powermenu && systemctl suspend" "󰤄")
     )
   )
 )

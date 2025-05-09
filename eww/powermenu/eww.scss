@@ -1,9 +1,11 @@
+@import '../colors.scss';
+
 * {
   all: unset; // Unsets everything so you can style everything from scratch
 }
 
 .powermenu {
-  background-color: transparentize($color: #000000, $amount: 0.6);
+  background-color: transparentize($color: black, $amount: 0.6);
 }
 
 .layout-box {
@@ -11,11 +13,19 @@
 }
 
 .button {
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 30px 50px 30px 40px;
   margin: 0px 10px;
-  background-color: black;
+  background-color: $surface;
+  color: $on_surface;
   font-size: 50px;
   font-weight: bold;
   font-family: "JetBrainsMonoNL Nerd Font";
+
+  transition: background-color 0.5s ease;
+}
+
+.button:hover {
+  background-color: $primary;
+  color: $on_primary;
 }
