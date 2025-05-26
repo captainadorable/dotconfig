@@ -11,6 +11,8 @@
 !nvim/**
 !tofi/**
 !scripts/**
+!qutebrowser/**
+!spicetify/**
 !starship.toml
 !.tmux.conf
 !.zshrc

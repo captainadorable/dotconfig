@@ -112,9 +112,6 @@
                                :height "50px"
                                :anchor "top center")
            :stacking "fg"
-             :reserve (struts :side "top" :distance "30px")
-
-           :exclusive true
            :windowtype "dock"
            :wm-ignore false
     (widgets)

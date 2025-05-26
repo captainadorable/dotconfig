@@ -108,9 +108,11 @@ alias air='~/go/bin/air'
 alias templ='~/go/bin/templ'
 
 alias wallpaper='~/.config/eww/change_wallpaper'
+alias wallpaper-hyprlock='~/.config/hypr/hyprlock/hyprlock-wallpaper.sh'
 alias starteww='~/.config/eww/start_eww'
 alias clipboard='cliphist list | fzf --no-sort | cliphist decode | wl-copy'
 alias testsddm='sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-eucalyptus-drop'
+alias preview='kitten icat'
 
 function wallpapersddm() {
     BACKGROUND=$1
@@ -145,3 +147,5 @@ pyenv() {
 
     pyenv "$@"
 }
+
+export PATH=$PATH:/home/adorable/.spicetify
