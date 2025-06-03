@@ -113,6 +113,7 @@ alias starteww='~/.config/eww/start_eww'
 alias clipboard='cliphist list | fzf --no-sort | cliphist decode | wl-copy'
 alias testsddm='sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-eucalyptus-drop'
 alias preview='kitten icat'
+alias reload-waybar='killall waybar && waybar & disown'
 
 function wallpapersddm() {
     BACKGROUND=$1

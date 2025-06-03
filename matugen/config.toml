@@ -16,3 +16,7 @@ post_hook = 'chmod +x ~/.config/tofi/start_tofi'
 [templates.rofi]
 input_path = './templates/rofi_colors.rasi'
 output_path = '~/.config/rofi/colors.rasi'
+
+[templates.waybar]
+input_path = './templates/waybar-colors.css'
+output_path = '~/.config/waybar/colors.css'

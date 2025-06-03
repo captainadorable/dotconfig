@@ -1,0 +1,56 @@
+{
+    "height": 25,
+    "margin-top": 4,
+    "margin-bottom": 4,
+    "margin-left": 6,
+    "margin-right": 6,
+    "layer": "top",
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/battery", "custom/powermenu"],
+
+    "hyprland/workspaces": {
+      "format": "{icon}   {name}",
+      "on-click": "activate",
+      "show-special": true,
+      "format-icons": {
+        "spotify": "",
+        "brave": "",
+        "urgent": "",
+        "active": "",
+        "default": ""
+      },
+      "sort-by-number": true
+    },
+    // "hyprland/window": {
+    //     "max-length": 20
+    // },
+    // "battery": {
+    //     "format": "{icon} {capacity}%",
+    //     "bat": "BAT0",
+    //     "tooltip-format": "{timeTo}, {health}",
+    //     "format-icons": ["", "", "", "", ""],
+    //     "states": {
+    //       "nearly-full": 80,
+    //       "ok": 60,
+    //       "warning": 30,
+    //     },
+    // },
+    "custom/battery": {
+      "exec": "~/.config/waybar/custom-bat.sh",
+      "return-type": "json",
+      "interval": 5,
+      "tooltip": false
+    },
+    "custom/powermenu": {
+      "exec": "echo 󱓞",  // you can also use emojis like ⏻
+      "return-type": "text",
+      "on-click": "eww open --toggle powermenu",
+      "tooltip": false
+    },
+    "clock": {
+      "format-alt": "{:%a, %d. %b  %H:%M}",
+      "tooltip": false
+    }
+}

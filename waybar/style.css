@@ -1,0 +1,124 @@
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-size: 13px;
+    min-height: 25px;
+}
+
+window#waybar {
+    background: transparent;
+    color: white;
+}
+
+
+#workspaces {
+  background-color: @surface;
+  border-radius: 16px;
+}
+
+#workspaces button {
+}
+
+#workspaces button.active {
+  color: @on_primary;
+}
+
+#workspaces button.visible {
+  color: @primary;
+}
+
+#workspaces button.urgent {
+  color: red;
+}
+/* #workspaces button.empty */
+/* #workspaces button.persistent */
+/* #workspaces button.hidden */
+
+/* #window { */
+/*   background-color: @surface; */
+/*   padding: 0px 12px; */
+/*   font-family: "JetBrainsMono Nerd Font Mono"; */
+/*   font-weight: bold; */
+/*   border-radius: 16px; */
+/* } */
+
+.modules-right {
+  background-color: @surface;
+  padding: 0px 12px;
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-weight: bold;
+  border-radius: 16px;
+}
+
+/* #battery { */
+/*   margin-right: 10px; */
+/* } */
+/**/
+/* #battery.plugged { */
+/*   color: @red; */
+/* } */
+/**/
+/* #battery.charging { */
+/*   color: @red; */
+/* } */
+
+/* #battery.nearly-full { */
+/*   color: #2ecc71; */
+/* } */
+/* #battery.ok { */
+/*   color: #f1c40f; */
+/* } */
+/* #battery.warning { */
+/*   color: #e74c3c; */
+/* } */
+
+#custom-battery {
+  margin-right: 10px;
+}
+#custom-battery.not-charging {
+  color: @primary;
+}
+#custom-battery.charging {
+  color: @primary;
+}
+#custom-battery.full {
+  color: @primary;
+}
+#custom-battery.discharging {
+  font-weight: bold;
+}
+#custom-battery.low {
+  color: red;
+}
+#custom-battery.medium-low {
+  color: orange;
+}
+#custom-battery.medium {
+  color: yellow;
+}
+#custom-battery.high {
+  color: limegreen;
+}
+
+#custom-powermenu {
+  background-color: @error;
+  border-radius: 8px;
+  color: @on_error;
+  font-size: 16px;
+  margin: 8px 0px;
+  padding: 0px 6px;
+}
+
+
+#clock {
+  background-color: @surface;
+  color: @on_surface;
+  font-weight: bold;
+  border-radius: 16px;
+  margin: 6px 0px;
+  padding: 0px 12px;
+}
+
+
