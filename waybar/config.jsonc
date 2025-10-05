@@ -8,7 +8,7 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/battery", "custom/powermenu"],
+    "modules-right": ["custom/battery", "idle_inhibitor", "custom/powermenu"],
 
     "hyprland/workspaces": {
       "format": "{icon}   {name}",
@@ -52,5 +52,13 @@
     "clock": {
       "format-alt": "{:%a, %d. %b  %H:%M}",
       "tooltip": false
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+          "activated": "",
+          "deactivated": ""
+      },
+      "tooltip": false,
     }
 }

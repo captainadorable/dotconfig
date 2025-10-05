@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git dircycle cp aliases archlinux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,6 +114,13 @@ alias clipboard='cliphist list | fzf --no-sort | cliphist decode | wl-copy'
 alias testsddm='sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-eucalyptus-drop'
 alias preview='kitten icat'
 alias reload-waybar='killall waybar && waybar & disown'
+alias stop-zapret='sudo systemctl stop zapret'
+alias start-zapret='sudo systemctl start zapret'
+alias vds='kitten ssh able@ssh.able0.space'
+alias projects='cd ~/Desktop/projects'
+alias wg-up='sudo wg-quick up ~/Documents/able.conf'
+alias wg-down='sudo wg-quick down ~/Documents/able.conf'
+alias ssh-vnc='ssh -L 5901:127.0.0.1:5901 -N -f -l able -t 212.68.34.16'
 
 function wallpapersddm() {
     BACKGROUND=$1
@@ -150,3 +157,10 @@ pyenv() {
 }
 
 export PATH=$PATH:/home/adorable/.spicetify
+
+
+
+# Tayire hediyem olan plugin
+source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Tayire hediyem 2
+source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

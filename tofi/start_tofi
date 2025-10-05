@@ -3,4 +3,4 @@
 * Generated with Matugen
 */
 #!/bin/bash
-tofi-drun --border-color=#4f2500 --selection-color=#ffb784 --font=/usr/share/fonts/TTF/HackNerdFont-Regular.ttf
+tofi-drun --border-color=#063911 --selection-color=#9fd49c --font=/usr/share/fonts/TTF/HackNerdFont-Regular.ttf

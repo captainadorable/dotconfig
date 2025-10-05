@@ -75,7 +75,7 @@ window#waybar {
 /* } */
 
 #custom-battery {
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 #custom-battery.not-charging {
   color: @primary;
@@ -103,9 +103,9 @@ window#waybar {
 }
 
 #custom-powermenu {
-  background-color: @error;
+  background-color: @primary;
   border-radius: 8px;
-  color: @on_error;
+  color: @on_primary;
   font-size: 16px;
   margin: 8px 0px;
   padding: 0px 6px;
@@ -121,4 +121,19 @@ window#waybar {
   padding: 0px 12px;
 }
 
+#idle_inhibitor {
+  color: @primary;
+  border-radius: 8px;
+  font-size: 16px;
+  margin: 8px 16px;
+  padding: 0px 6px;
+}
 
+#idle_inhibitor.activated {
+  background-color: @primary;
+  border-radius: 8px;
+  color: @on_primary;
+  font-size: 16px;
+  margin: 8px 16px;
+  padding: 0px 6px;
+}

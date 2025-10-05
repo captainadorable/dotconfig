@@ -14,6 +14,7 @@
 !scripts/**
 !qutebrowser/**
 !spicetify/**
+!mpv/**
 !starship.toml
 !.tmux.conf
 !.zshrc
