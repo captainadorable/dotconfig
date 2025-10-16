@@ -9,6 +9,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+ZSH_COLORIZE_TOOL=chroma
+ZSH_COLORIZE_STYLE="colorful"
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +73,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dircycle cp aliases archlinux)
+plugins=(git dircycle cp aliases archlinux colorize)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,6 +124,7 @@ alias projects='cd ~/Desktop/projects'
 alias wg-up='sudo wg-quick up ~/Documents/able.conf'
 alias wg-down='sudo wg-quick down ~/Documents/able.conf'
 alias ssh-vnc='ssh -L 5901:127.0.0.1:5901 -N -f -l able -t 212.68.34.16'
+alias open-metroo='projects && cd metroo/metroo-game && tmux'
 
 function wallpapersddm() {
     BACKGROUND=$1
