@@ -51,8 +51,6 @@ return {
       }
     }
 
-    -- Reserve a space in the gutter
-    vim.opt.signcolumn = "yes"
 
     -- LSP actions
     vim.api.nvim_create_autocmd(
@@ -85,7 +83,7 @@ return {
         ensure_installed = { "lua_ls", "gopls" },
         handlers = {
           function(server_name)
-            require("lspconfig")[server_name].setup({})
+            vim.lsp.enable(server_name)
             vim.lsp.config(server_name, {
                 capabilities = capabilities,
             })
@@ -133,10 +131,7 @@ return {
       }
     )
 
-    vim.lsp.config("gdscript", {
-      name = "godot",
-      cmd = vim.lsp.rpc.connect("127.0.0.1", 6005),
-    })
+    vim.lsp.enable('gdscript')
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gdscript",
       callback = function()

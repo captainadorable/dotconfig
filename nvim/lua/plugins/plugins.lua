@@ -1,6 +1,7 @@
 return {
   "romainl/vim-cool",
   "tpope/vim-fugitive",
+  "airblade/vim-gitgutter",
   {
     "nvim-lua/plenary.nvim",
     name = "plenary"

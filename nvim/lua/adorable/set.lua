@@ -13,7 +13,9 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.updatetime = 50
+vim.opt.updatetime = 100
+
+vim.opt.signcolumn = "yes"
 
 -- godot
 local projectfile = vim.fn.getcwd() .. '/project.godot'
